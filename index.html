@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+ <meta charset="utf-8" />
+<script>
+function triggerSearchEvent() {
+	var event = {	event: "customExtendedSearch",
+						operation: "search",
+						params: {
+							$search: `${document.getElementById("searchInput").value}`
+						}
+					};
+	window.parent.postMessage(event, '*')
+}
+
+function triggerRefreshEvent() {
+	var event = {
+		event: "refreshEvent",
+		operation: "triggerCustomAction"
+	};
+	window.parent.postMessage(event, '*')
+}
+</script>
+</head>
+<body>
+	<h3>Event Callback</h3>
+	<form>
+		<fieldset>
+			<p><label>Search event for Agent Desktop</label></p>
+			<input type='test' value='search term' id="searchInput"/>
+			<input type='button' value='Search' onclick='triggerSearchEvent();' />
+		</fieldset>
+	</form>
+	<br/>
+	<form>
+		<fieldset>
+			<p><label>Refresh Event</label></p>
+			<input type='button' value='Trigger Refresh' onclick='triggerRefreshEvent();' />
+		</fieldset>
+	</form>
+</body>
+</html>
