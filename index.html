@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+<title>Mashup Events</title>
  <meta charset="utf-8" />
 <script>
 function triggerSearchEvent() {
@@ -21,10 +21,30 @@ function triggerRefreshEvent() {
 	};
 	window.parent.postMessage(event, '*')
 }
+
+function openNewCnsCaseListWithRoutingKey() {
+	var oCase = {operation: "navigation", params: {routingKey: "case", viewType: "list"}};
+	window.parent.postMessage(oCase, '*')
+}
+
+function openNewCnsCaseViewWithRoutingKey() {
+	var oCase = {operation: "navigation", params: {objectKey: "bdf46a6b-4b72-11ed-8da5-f33ebf1bb464", routingKey: "case"}};
+	window.parent.postMessage(oCase, '*')
+}
+
+function openNewCnsAccountListWithRoutingKey() {
+	var account = {operation: "navigation", params: {objectKey: "00163e03-552b-1ee2-8784-ecd231debb1d", routingKey: "mdaccount", viewType: "list"}};
+	self.window.parent.postMessage(account, '*')
+}
+
+function openNewCnsAccountViewWithRoutingKey() {
+	var account = {operation: "navigation", params: {objectKey: "00163e03-552b-1ee2-8784-ecd231debb1d", routingKey: "mdaccount", viewType: "details"}};
+	self.window.parent.postMessage(account, '*')
+}
 </script>
 </head>
 <body>
-	<h3>Event Callback</h3>
+	<h3>Mashup Events</h3>
 	<form>
 		<fieldset>
 			<p><label>Search event for Agent Desktop</label></p>
@@ -37,6 +57,18 @@ function triggerRefreshEvent() {
 		<fieldset>
 			<p><label>Refresh Event</label></p>
 			<input type='button' value='Trigger Refresh' onclick='triggerRefreshEvent();' />
+		</fieldset>
+	</form>
+	<br/>
+	<form>
+		<fieldset>
+			<p><label>Data from ns-staging.cxm using RoutingKey</label></p>
+			<input type='button' value='CNS Case List' onclick='openNewCnsCaseListWithRoutingKey();' />&nbsp;&nbsp;&nbsp;
+			<input type='button' value='CNS Case Details' onclick='openNewCnsCaseViewWithRoutingKey();' />&nbsp;&nbsp;&nbsp;
+			<br/>
+			<br/>
+			<input type='button' value='CNS Account List' onclick='openNewCnsAccountListWithRoutingKey();' />&nbsp;&nbsp;&nbsp;
+			<input type='button' value='CNS Account Details' onclick='openNewCnsAccountViewWithRoutingKey();' />&nbsp;&nbsp;&nbsp;
 		</fieldset>
 	</form>
 </body>
